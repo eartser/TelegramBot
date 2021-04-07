@@ -7,10 +7,11 @@ lazy val root = project.in(file("."))
     name := "TelegramBot",
     scalaVersion := "2.13.5",
     libraryDependencies ++= Seq("org.augustjune" %% "canoe" % "0.5.1",
-                                "org.scalatest" % "scalatest_2.10" % "2.0" % "test"),
+                                "org.scalatest" % "scalatest" % "3.2.5" % "test"),
   ).aggregate(app)
 
 lazy val app = project.in(file("app"))
   .settings (
-    Compile / run/ mainClass := Some("org.app.MainApp")
+    Compile / run/ mainClass := Some("org.app.MainApp"),
+    libraryDependencies += "org.scalatest" % "scalatest" % "3.2.5" % "test"
   )
