@@ -1,5 +1,6 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
-class MainTest extends FunSuite with Matchers {
+class MainTest extends AnyFunSuite with Matchers {
 
 }
