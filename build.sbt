@@ -22,8 +22,8 @@ lazy val root = project.in(file("."))
 lazy val app = project.in(file("app"))
   .settings (
     Compile / run/ mainClass := Some("org.app.MainApp"),
-    libraryDependencies ++= Seq("org.scalactic" %% "scalactic" % "3.2.5",
-                                "org.scalatest" %% "scalatest" % "3.2.5" % "test"),
+    libraryDependencies ++= Seq("org.scalactic" %% "scalactic" % "3.2.7",
+                                "org.scalatest" %% "scalatest" % "3.2.7" % "test"),
     scalacOptions += "-Wunused:imports",
     dependencyUpdatesFailBuild := true
   )
