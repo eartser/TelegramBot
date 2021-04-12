@@ -19,7 +19,14 @@ jobs:
   validate-ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: olafurpg/setup-scala@v10
       - name: Validate code
         run: sbt "scalafixAll --check"
+  check-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: olafurpg/setup-scala@v10
+      - name: Check up-to-date
+        run: sbt dependencyUpdates
