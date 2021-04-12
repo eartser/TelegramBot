@@ -1,7 +1,11 @@
 package org.app
+import scala.List
 
 object MainApp {
-  def main(args: Array[String]): Unit = {
 
+  private def foo(): Unit = {}
+
+  def main(args: Array[String]): Unit = {
+    val t = 0
   }
 }
