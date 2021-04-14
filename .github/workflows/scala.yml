@@ -9,17 +9,17 @@ jobs:
       - uses: olafurpg/setup-scala@v10
       - name: Tests
         run: sbt test
-  validate-windows:
-    runs-on: windows-latest
+  validate:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: olafurpg/setup-scala@v10
       - name: Validate code
         run: sbt "scalafixAll --check"
-  validate-ubuntu:
+  check-up-to-date:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: olafurpg/setup-scala@v10
-      - name: Validate code
-        run: sbt "scalafixAll --check"
+      - name: Check up-to-date
+        run: sbt dependencyUpdates
