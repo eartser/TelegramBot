@@ -1,11 +1,10 @@
 package org.app
 
-object EventType extends Enumeration {
-  type EventType = Value
-  val Lecture, Seminar, Homework, Test = Value
-}
-
-import EventType._
+sealed trait EventType
+case object Lecture extends EventType
+case object Seminar extends EventType
+case object Homework extends EventType
+case object Test extends EventType
 
 case class Event(name: String, eventType: EventType)
 
