@@ -14,7 +14,6 @@ inThisBuild(
 lazy val root = project.in(file("."))
   .settings(
     name := "TelegramBot",
-    //scalaVersion := "2.13.5",
     libraryDependencies ++= Seq("org.augustjune" %% "canoe" % "0.5.1"),
     scalacOptions += "-Wunused:imports"
   ).aggregate(app)
@@ -22,8 +21,8 @@ lazy val root = project.in(file("."))
 lazy val app = project.in(file("app"))
   .settings (
     Compile / run/ mainClass := Some("org.app.MainApp"),
-    libraryDependencies ++= Seq("org.scalactic" %% "scalactic" % "3.2.7",
-                                "org.scalatest" %% "scalatest" % "3.2.7" % "test"),
+    libraryDependencies ++= Seq("org.scalactic" %% "scalactic" % "3.2.8",
+                                "org.scalatest" %% "scalatest" % "3.2.8" % "test"),
     scalacOptions += "-Wunused:imports",
     dependencyUpdatesFailBuild := true
   )
