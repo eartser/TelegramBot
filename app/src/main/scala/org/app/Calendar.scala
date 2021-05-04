@@ -1,3 +1,3 @@
 package org.app
 
-case class Calendar(events: List[Event])
+case class Calendar(user: User, events: List[Event])

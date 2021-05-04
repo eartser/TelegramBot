@@ -1,10 +1,10 @@
 package org.app
 
-case class User(login: String, password: String)
+case class User(login: String, emknID: Int)
 
-trait UserRepository {
-  def save(user: User)
-  def remove(user: User)
-  def getAll: List[User]
-  def findByLogin(login: String): User
+trait UserRepository[F[_]] {
+  def save(user: User): F[Unit]
+  def remove(user: User): F[Unit]
+  def getAll: F[List[User]]
+  def findByLogin(login: String): F[User]
 }

@@ -1,15 +1,25 @@
 package org.app
 
+import java.net.URL
+import java.time.ZonedDateTime
+
 sealed trait EventType
-case object Lecture extends EventType
-case object Seminar extends EventType
-case object Homework extends EventType
-case object Test extends EventType
+case object Assignment extends EventType
+case object Class extends EventType
 
-case class Event(name: String, eventType: EventType)
+case class Event(uid: String,
+                 summary: String,
+                 eventType: EventType,
+                 dateStart: ZonedDateTime,
+                 dateEnd: ZonedDateTime,
+                 description: String,
+                 url: URL)
 
-trait EventRepository {
-  def save(event: Event)
-  def remove(event: Event)
-  def getAll: List[Event]
+trait EventRepository[F[_]] {
+  def save(event: Event): F[Unit]
+  def remove(event: Event): F[Unit]
+  def getAll: F[List[Event]]
+  def getByTime(dateStart: ZonedDateTime, dateEnd: ZonedDateTime): F[List[Event]]
+  def getByType(eventType: EventType): F[List[Event]]
+  def getByTimeAndType(dateStart: ZonedDateTime, dateEnd: ZonedDateTime, eventType: EventType): F[List[Event]]
 }
