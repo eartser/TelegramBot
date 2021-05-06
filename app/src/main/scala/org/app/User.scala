@@ -1,6 +1,15 @@
 package org.app
 
-case class User(login: String, emknID: Int)
+import scala.util.Try
+
+case class User(login: String,
+                emknID: Int,
+                preferences: List[EventType], //our user want to receive
+                                              // notifications about such events
+                subscribedEvents: EventRepository[Try]) {
+  def subscribe(event: Event): Try[Unit] = subscribedEvents.save(event)
+  def unsubscribe(event: Event): Try[Unit] = subscribedEvents.remove(event)
+}
 
 trait UserRepository[F[_]] {
   def save(user: User): F[Unit]
