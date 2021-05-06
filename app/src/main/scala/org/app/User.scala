@@ -2,18 +2,18 @@ package org.app
 
 import scala.util.Try
 
-case class User(login: String,
-                emknID: Int,
-                preferences: List[EventType], //our user want to receive
+case class User[F[_]](login: String,
+                      emknID: Int,
+                      preferences: List[EventType], //our user want to receive
                                               // notifications about such events
-                subscribedEvents: EventRepository[Try]) {
-  def subscribe(event: Event): Try[Unit] = subscribedEvents.save(event)
-  def unsubscribe(event: Event): Try[Unit] = subscribedEvents.remove(event)
+                      subscribedEvents: EventRepository[F]) {
+  def subscribe(event: Event): F[Unit] = subscribedEvents.save(event)
+  def unsubscribe(event: Event): F[Unit] = subscribedEvents.remove(event)
 }
 
-trait UserRepository[F[_]] {
-  def save(user: User): F[Unit]
-  def remove(user: User): F[Unit]
-  def getAll: F[List[User]]
-  def findByLogin(login: String): F[User]
+trait UserRepository[G[_], F[_]] {
+  def save(user: User[F]): G[Unit]
+  def remove(user: User[F]): G[Unit]
+  def getAll: G[List[User[F]]]
+  def findByLogin(login: String): G[User[F]]
 }
