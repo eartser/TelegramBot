@@ -1,7 +1,5 @@
 package org.app
 
-import scala.util.Try
-
 case class User[F[_]](login: String,
                       emknID: Int,
                       preferences: List[EventType], //our user want to receive
