@@ -7,7 +7,7 @@ sealed trait EventType
 case object Assignment extends EventType
 case object Class extends EventType
 
-case class Event(uid: String,
+case class Event(id: UID,
                  summary: String,
                  eventType: EventType,
                  dateStart: ZonedDateTime,
