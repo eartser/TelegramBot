@@ -20,7 +20,7 @@ case class Event(uid: String,
 trait EventRepository[F[_]] {
   def save(event: Event): F[Unit]
   def remove(event: Event): F[Unit]
-  def findByUID(uid: String): F[Event]
+  def getByUID(uid: String): F[Event]
   def getAll: F[List[Event]]
   def getByTime(dateStart: ZonedDateTime, dateEnd: ZonedDateTime): F[List[Event]]
   def getByType(eventType: EventType): F[List[Event]]

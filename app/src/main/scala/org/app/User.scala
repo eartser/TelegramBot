@@ -1,17 +1,14 @@
 package org.app
 
-case class User[F[_]](login: String,
-                      emknID: Int,
-                      preferences: List[EventType], //our user want to receive
-                                              // notifications about such events
-                      subscribedEvents: EventRepository[F]) {
-  def subscribe(event: Event): F[Unit] = subscribedEvents.save(event)
-  def unsubscribe(event: Event): F[Unit] = subscribedEvents.remove(event)
-}
+case class User(login: String,
+               emknID: Int,
+               preferences: List[EventType], //our user want to receive
+                                             // notifications about such events
+               subscriptions: List[String])  //here we store ids of events which user subscribed on
 
-trait UserRepository[G[_], F[_]] {
-  def save(user: User[F]): G[Unit]
-  def remove(user: User[F]): G[Unit]
-  def getAll: G[List[User[F]]]
-  def findByLogin(login: String): G[User[F]]
+trait UserRepository[F[_]] {
+  def save(user: User): F[Unit]
+  def remove(user: User): F[Unit]
+  def getAll: F[List[User]]
+  def findByLogin(login: String): F[User]
 }
